@@ -242,10 +242,4 @@ Toàn bộ các tác vụ đều trả về `ok`, số lượng tác vụ thay �
 
 ---
 
-## 🏆 KẾT LUẬN
 
-Bài thực hành số 4 đã hoàn thành xuất sắc 100% các tiêu chí:
-- Nắm vững quy trình quản lý cấu hình hạ tầng hiện đại theo chuẩn DevOps.
-- Làm chủ cú pháp Inventory, Ansible Ad-hoc Commands, Ansible Playbook YAML.
-- Thực hành thành công trên môi trường Docker container hóa mô phỏng hệ thống máy chủ thực tế.
-- Kiểm chứng thực tế tính chất Idempotency - nền tảng của tự động hóa hạ tầng tin cậy.
