@@ -1,0 +1,40 @@
+===================================================================
+BÁO CÁO NỘP BÀI THỰC HÀNH LAB 4: QUẢN LÝ CẤU HÌNH HẠ TẦNG VỚI ANSIBLE
+Môn học: Vận hành & Bảo trì Phần mềm với DevOps
+===================================================================
+
+- Họ và tên: Ma Quốc Đan
+- Mã số sinh viên (MSSV): DTC235180041
+- Lớp: Vận hành & Bảo trì Phần mềm với DevOps
+- GitHub Username: quocdan31
+- Link GitHub Repository Lab 4: https://github.com/quocdan31/devops-lab4-ansible
+- Link GitHub Repository Lab 2: https://github.com/quocdan31/devops-lab2-calms
+- Link GitHub Repository Lab 1: https://github.com/quocdan31/devops-lab1-mysite
+
+-------------------------------------------------------------------
+TỔNG HỢP KẾT QUẢ ĐẠT ĐƯỢC:
+1. Cài đặt Ansible & Managed Nodes (Docker):
+   - Đã dựng thành công 3 node container (web-server-1, web-server-2, db-server-1) sử dụng image phamthuongdocker/ubuntu-sshd:22.04 trên Docker network riêng biệt (ansible-lab).
+   - Ánh xạ port SSH lần lượt: 2201, 2202, 2203 về localhost.
+
+2. Cấu hình Ansible Inventory & ansible.cfg:
+   - Xây dựng file inventory.ini định nghĩa rõ ràng các nhóm [webservers], [dbservers], [production:children] và các biến toàn cục [all:vars].
+   - Cấu hình file ansible.cfg tối ưu: host_key_checking=False, format output yaml, tự động xử lý interpreter python.
+   - Kiểm tra kết nối với `ansible all -m ping`: Phản hồi `pong` thành công 100% từ cả 3 hosts.
+
+3. Thực thi Ad-hoc Commands:
+   - Thu thập thông tin OS version (Ubuntu 22.04 LTS), kiểm tra hostname từng node.
+   - Thao tác tệp tin và package: tạo file kiểm tra, copy tệp hello.txt từ control node lên cụm web server đồng loạt.
+
+4. Tự động hóa Cấu hình Web Server (playbook-webserver.yml):
+   - Viết và chạy playbook tự động cập nhật apt cache, cài đặt Apache2, kích hoạt service khởi động cùng OS.
+   - Triển khai trang index.html tùy chỉnh mang thông tin định danh sinh viên: Ma Quốc Đan - DTC235180041, cùng dynamic facts (ansible_hostname, os, ip/port).
+   - Kết quả: Apache hoạt động bình thường, phản hồi HTTP 200 OK trên các web nodes.
+
+5. Triển khai Playbook Nâng cao Đa máy chủ (playbook-full.yml):
+   - Web Tier: Cài đặt các gói công cụ (curl, git, htop, vim), cấu hình thư mục /opt/myapp, tệp cấu hình config.env và script giám sát sức khỏe health-check.sh.
+   - Toàn bộ cụm Server: Cài đặt hệ thống công cụ giám sát hiệu năng sysstat, net-tools.
+
+6. Kiểm chứng tính Bất biến (Idempotency):
+   - Chạy lại playbook lần 2: Đạt kết quả changed=0, khẳng định Ansible tuân thủ tuyệt đối nguyên lý Idempotent - đảm bảo tính an toàn và nhất quán cho hạ tầng production.
+===================================================================

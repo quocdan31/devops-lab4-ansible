@@ -1,0 +1,6 @@
+*.retry
+*.swp
+*.swo
+*~
+__pycache__/
+.ansible/
